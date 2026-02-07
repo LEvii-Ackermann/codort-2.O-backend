@@ -7,7 +7,7 @@ const App = () => {
   const [description, setDescription] = useState("");
 
   function fetchNotes() {
-    axios.get("http://localhost:3000/api/notes").then((res) => {
+    axios.get("https://codort-2-o-backend-1.onrender.com/api/notes").then((res) => {
       const data = res.data.notes;
       setNotes(data);
     });
@@ -17,7 +17,7 @@ const App = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/api/notes", {
+      .post("https://codort-2-o-backend-1.onrender.com/api/notes", {
         title: title,
         description: description,
       })
@@ -32,7 +32,7 @@ const App = () => {
   }
 
   function handleDeleteNote(noteId) {
-    axios.delete("http://localhost:3000/api/notes/"+noteId)
+    axios.delete("https://codort-2-o-backend-1.onrender.com/api/notes/"+noteId)
       .then(res => {
         console.log(res.data)
 
