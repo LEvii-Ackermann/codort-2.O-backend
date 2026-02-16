@@ -43,7 +43,7 @@ async function registerController (req, res) {
         id: user._id
     }, process.env.JWT_SECRET)
 
-    res.cookie("jwt-token", token)
+    res.cookie("jwt_token", token)
 
     res.status(201).json({
         message: "user registered successfully",
