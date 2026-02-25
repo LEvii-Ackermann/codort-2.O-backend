@@ -2,41 +2,34 @@ const userModel = require("../models/user.model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
-async function registerController (req, res) {
+const registerController = async (req, res) => {
+    const {username, email, password, bio, profile_image} = req.body;
 
-    const {username, email, password, bio, profile_image} = req.body
-
-    /**
-     * first check the username and duplicate should not be used before
-     */
-
-    const isUserExist = await userModel.findOne({
+    const isUserAlreadyExist = await userModel.findOne({
         $or:[
             {
-                username:username
+                username: username
             },
             {
-                email:email
+                email: email
             }
         ]
     })
 
-    if(isUserExist){
-        return res.status(409)
-            .json({
-                message: "User already exists" + (isUserExist.username == username
-                ? "Username already exists": "email already exists")
-            })
+    if(isUserAlreadyExist){
+        return res.status(409).json({
+            message: "User already exists"
+        })
     }
 
     const hash = await bcrypt.hash(password, 10)
 
     const user = await userModel.create({
-        username,
-        email,
-        bio,
-        profile_image,
-        password:hash
+        username: username,
+        email: email,
+        password: hash,
+        bio: bio,
+        profile_image: profile_image
     })
 
     const token = jwt.sign({
@@ -56,33 +49,31 @@ async function registerController (req, res) {
     })
 }
 
-async function loginController (req, res) {
-
+const loginController = async (req, res) => {
     const {username, email, password} = req.body
-
 
     const user = await userModel.findOne({
         $or:[
             {
-                username:username 
+                username: username
             },
             {
-                email:email
+                email: email
             }
         ]
     })
 
     if(!user){
         return res.status(404).json({
-            message: "User not exist" 
+            message: "User not found"
         })
     }
 
-    const validPassword = await bcrypt.compare(password, user.password)
+    const isValidPassword = await bcrypt.compare(password, user.password)
 
-    if(!validPassword){
-        return res.status(409).json({
-            message: "invalid password"
+    if(!isValidPassword){
+        return res.status(401).json({
+            message: "Password is wrong"
         })
     }
 
@@ -94,14 +85,15 @@ async function loginController (req, res) {
 
     res.status(201).json({
         message: "user logged in successfully",
-        user:{
+        user: {
             username: user.username,
             email: user.email,
             bio: user.bio,
             profile_image: user.profile_image
         }
     })
-} 
+}
+
 
 module.exports = {
     registerController,
