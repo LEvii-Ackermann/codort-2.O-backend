@@ -8,10 +8,14 @@ const userRouter = express.Router()
  * post  /api/users/follow/:username
  * @description api to follow someone give the username of user you want to follow in the params
  */
-userRouter.post("/follow/:username", identifyUser ,followController.followUserController)
+userRouter.post("/follow/:username", identifyUser ,followController.followRequestController)
+
+userRouter.patch("/follow/accept/:username", identifyUser, followController.acceptedRequestController)
+
+userRouter.patch("/follow/reject/:username", identifyUser, followController.rejectedRequestController)
 
 /**
- * post /pi/users/unfollow/:username
+ * post /api/users/unfollow/:username
  * @description api to unfollow someone
  */
 userRouter.post("/unfollow/:username", identifyUser, followController.unfollowUserController)

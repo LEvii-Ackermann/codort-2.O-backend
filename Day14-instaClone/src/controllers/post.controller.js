@@ -25,6 +25,8 @@ async function createPostController (req, res) {
         message: "post created successfully",
         post
     })
+
+    console.log(req.file)
 }
 
 async function getPostController (req, res) {
