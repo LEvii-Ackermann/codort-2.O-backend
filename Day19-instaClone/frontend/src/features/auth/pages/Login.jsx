@@ -22,12 +22,14 @@ const Login = () => {
     async function handleSubmit (e) {
         e.preventDefault()
 
-        handleLogin( username, password )
-        .then(res => {
-            console.log(res)
-
-            navigate("/")
-        })
+        try {
+            await handleLogin( username, password )
+            console.log('user logged in')
+            navigate('/')
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
   return (

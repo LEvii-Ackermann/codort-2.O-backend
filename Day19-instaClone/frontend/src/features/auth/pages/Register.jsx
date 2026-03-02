@@ -23,14 +23,14 @@ const Register = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    handleRegister(username, email, password)
-    .then(res => {
-      console.log(res)
-
-      navigate("/login")
-    })  
-
-
+    try {
+      await handleRegister(username, email, password)
+      console.log('user registered successfully')
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
+     
   }
 
   return (
