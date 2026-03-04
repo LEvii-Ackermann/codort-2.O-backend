@@ -2,11 +2,14 @@ import React from 'react'
 import AppRoutes from './AppRoutes'
 import { AuthProvider } from './features/auth/auth.context.jsx'
 import "./style.scss"
+import { PostContextProvider } from './features/post/post.context.jsx'
 
 const App = () => {
   return (
     <AuthProvider>
-      <AppRoutes />     
+      <PostContextProvider>
+        <AppRoutes />     
+      </PostContextProvider>
     </AuthProvider>
 
   )
