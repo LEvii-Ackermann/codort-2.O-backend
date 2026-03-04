@@ -30,7 +30,7 @@
       gap: 0.5rem;
 
       .img-wrapper {
-        padding: 2px; 
+        padding: 2px;
         border-radius: 50%;
         background: conic-gradient(
           #feda75,
@@ -52,26 +52,30 @@
       }
     }
 
-    .icons{
+    .icons {
+      display: flex;
+      justify-content: space-between;
 
+      .left {
         display: flex;
-        justify-content: space-between;
+        gap: 0.7rem;
+      }
 
-        .left{
-            display: flex;
-            gap: 0.7rem;
-        }
+      .like {
+        color: red;
+        fill: red;
+      }
 
-        svg{
-            width: 1rem;
-            aspect-ratio: 1/1;
-            color: white;
-        }
-        button{
-            background-color: transparent;
-            border: none;
-            outline: none;
-        }
+      svg {
+        width: 1rem;
+        aspect-ratio: 1/1;
+        color: white;
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
     }
 
     img {
