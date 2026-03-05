@@ -14,6 +14,7 @@ const Post = ({user, post}) => {
         <p>{user.username}</p>
       </div>
       <img
+        className="post-img"
         src={post.image_url}
         alt=""
       />

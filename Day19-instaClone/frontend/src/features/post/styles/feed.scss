@@ -1,7 +1,30 @@
 .feed-page {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  .nav{
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 1rem;
+  }
+
+  button {
+    background-color: #bd0c23;
+    color: whitesmoke;
+    cursor: pointer;
+  }
 }
 
 .feed {
@@ -50,6 +73,11 @@
         object-fit: cover;
         display: block;
       }
+    }
+
+    .post-img {
+      height: 25rem;
+      object-fit: cover;
     }
 
     .icons {

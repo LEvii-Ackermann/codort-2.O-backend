@@ -1,5 +1,5 @@
-import { getFeed } from "../services/post.api";
-import { useContext } from "react";
+import { createPost, getFeed } from "../services/post.api";
+import { useContext, useEffect } from "react";
 import { PostContext } from "../post.context";
 
 export const usePost = () => {
@@ -11,7 +11,7 @@ export const usePost = () => {
         try {
             setLoading(true)
             const data = await getFeed()
-            setFeed(data.posts)
+            setFeed(data.posts.reverse())
             return data
         } catch (error) {
             throw error
@@ -20,5 +20,22 @@ export const usePost = () => {
         }
     }
 
-    return {loading, feed, post, handleGetFeed}
+    const handleCreatePost = async (imgFile, caption) => {
+        try {
+            setLoading(true)
+            const data = await createPost(imgFile, caption)
+            setFeed([data.post, ...feed])
+            
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        handleGetFeed()
+    }, [])
+
+    return {loading, feed, post, handleGetFeed, handleCreatePost}
 }

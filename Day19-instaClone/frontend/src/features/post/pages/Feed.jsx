@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import { usePost } from "../hooks/usePost";
 import "../styles/feed.scss";
@@ -20,6 +21,7 @@ const Feed = () => {
 
   return (
     <main className="feed-page">
+      <Navbar />
       <div className="feed">
         <div className="posts">
           {feed.map(post=>{

@@ -1,0 +1,37 @@
+.create-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 500px;
+
+  form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 300px;
+  }
+
+  .post-image-label{
+    background-color: whitesmoke;
+    color: rgb(66, 66, 66);
+
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  input,
+  button {
+    border: none;
+    outline: none;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    border-radius: 1rem;
+  }
+
+  button {
+    background-color: #bd0c23;
+    color: whitesmoke;
+    cursor: pointer;
+  }
+}
