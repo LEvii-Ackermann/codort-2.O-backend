@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 const Feed = () => {
 
-    const { loading, feed, handleGetFeed } = usePost() 
+    const { loading, feed, handleGetFeed, handleLikePost, handleUnlikePost } = usePost() 
 
     useEffect(() => {
         handleGetFeed()
@@ -25,7 +25,7 @@ const Feed = () => {
       <div className="feed">
         <div className="posts">
           {feed.map(post=>{
-            return <Post key={post._id} user={post.user} post={post} />
+            return <Post key={post._id} user={post.user} post={post} handleLikePost={handleLikePost} handleUnlikePost={handleUnlikePost}/>
           })}
         </div>
       </div>
